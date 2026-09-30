@@ -1,0 +1,47 @@
+  :root {
+    --bg: #000;
+    --fg: #f4f4f0;
+    --dim: #7c7f8a;
+    --pad: clamp(16px, 3vw, 36px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--fg); overflow: hidden; }
+  body {
+    font-family: "Courier New", Courier, ui-monospace, monospace;
+    -webkit-font-smoothing: antialiased;
+  }
+  #ascii { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  /* darken the middle so the logo always reads, plus edge vignette */
+  .shade {
+    position: fixed; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 42% 38% at 50% 50%, rgba(0,0,0,.82) 0%, rgba(0,0,0,.5) 55%, rgba(0,0,0,0) 100%),
+      radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.65) 100%);
+  }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: screen;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.5) 0 1px, transparent 1px 3px);
+  }
+
+  .logo {
+    position: fixed; left: 50%; top: 50%;
+    width: min(56vw, 480px);
+    aspect-ratio: 983 / 749;
+    transform: translate(-50%, -50%);
+    animation: float 7s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(255,255,255,.25));
+    user-select: none; -webkit-user-drag: none;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50%      { transform: translate(-50%, -50%) scale(1.025); }
+  }
+
+
+  @media (max-width: 600px) {
+    .logo { width: 74vw; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo, .tr::before { animation: none; }
+  }
