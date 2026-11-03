@@ -20,8 +20,7 @@ export const settings = {
   /** page <title> and heading */
   name: 'JASON Y',
   tagline: 'Internet Emotional Music*',
-  avatar: '/links/avatar.jpg',
-  /** 'ascii' = animated site background, 'plain' = flat black */
+  avatar: '/links/avatar.jpg',  /** 'ascii' = animated site background, 'plain' = flat black */
   background: 'ascii' as 'ascii' | 'plain',
   /** 'list' = stacked rows, 'grid' = 2-column cards */
   layout: 'list' as 'list' | 'grid',
@@ -35,7 +34,7 @@ export const settings = {
   maxWidth: 420,
 };
 
-export type SocialIcon = 'website' | 'instagram' | 'tiktok' | 'youtube' | 'spotify' | 'applemusic';
+export type SocialIcon = 'website' | 'email' | 'instagram' | 'tiktok' | 'youtube' | 'spotify' | 'applemusic';
 
 // label is used for the tooltip and screen readers
 export const socials: { label: string; icon: SocialIcon; url: string }[] = [
@@ -44,6 +43,7 @@ export const socials: { label: string; icon: SocialIcon; url: string }[] = [
   { label: 'YouTube', icon: 'youtube', url: 'https://www.youtube.com/@jasonymusic' },
   { label: 'Spotify', icon: 'spotify', url: 'https://open.spotify.com/artist/51H7Fx9M7pnxFZhlCYsvu9' },
   { label: 'Apple Music', icon: 'applemusic', url: 'https://music.apple.com/ca/artist/jason-y/1666161235' },
+  { label: 'Email', icon: 'email', url: 'mailto:info@whoisjasony.com' },
 ];
 
 export const links: LinkItem[] = [
