@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
 import { siInstagram, siTiktok, siYoutube, siSpotify, siApplemusic } from 'simple-icons';
 import { links, socials, settings } from '../data/links';
 
@@ -97,6 +98,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         import '../scripts/ascii.js';
       </script>
     )}
+    <Analytics />
   </body>
 </html>
 
