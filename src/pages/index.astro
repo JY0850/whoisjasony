@@ -65,24 +65,34 @@ const pad = (n: number) => String(n).padStart(2, '0');
       </header>
 
       <ul class="list">
-        {visible.map((l, i) => (
+        {visible.map((l, i) => {
+          const released = !!l.release && Date.now() >= Date.parse(l.release.at);
+          const title = released ? l.release!.title : l.title;
+          const tag = released ? (l.release!.tag ?? l.tag) : l.tag;
+          return (
           <>
             {l.group && <li class="group">// {l.group}</li>}
-            <li class:list={['item', l.featured && 'featured']}>
+            <li
+              class:list={['item', l.featured && 'featured']}
+              data-release-at={l.release?.at}
+              data-release-title={l.release?.title}
+              data-release-tag={l.release?.tag ?? l.tag}
+            >
               <a href={l.url} target="_blank" rel="noopener">
                 {settings.showThumbnails && l.thumb && (
                   <img class="thumb" src={`/links/${l.thumb}`} alt="" loading={i < 3 ? 'eager' : 'lazy'} />
                 )}
                 <span class="text">
-                  {l.tag && <span class="tag">{l.tag}</span>}
-                  <span class="title">{l.title}</span>
+                  {tag && <span class="tag">{tag}</span>}
+                  <span class="title">{title}</span>
                 </span>
                 {settings.showNumbers && <span class="num">{pad(i + 1)}</span>}
                 <span class="arrow" aria-hidden="true">↗</span>
               </a>
             </li>
           </>
-        ))}
+          );
+        })}
       </ul>
 
       <footer>
@@ -90,6 +100,14 @@ const pad = (n: number) => String(n).padStart(2, '0');
       </footer>
       <script is:inline>
         document.getElementById('year').textContent = new Date().getFullYear();
+        // scheduled releases: swap pre-save -> out now at the set time, no redeploy needed
+        document.querySelectorAll('[data-release-at]').forEach((li) => {
+          if (Date.now() < Date.parse(li.dataset.releaseAt)) return;
+          const title = li.querySelector('.title');
+          if (title && li.dataset.releaseTitle) title.textContent = li.dataset.releaseTitle;
+          const tag = li.querySelector('.tag');
+          if (tag && li.dataset.releaseTag) tag.textContent = li.dataset.releaseTag;
+        });
       </script>
     </main>
 

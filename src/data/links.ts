@@ -14,13 +14,16 @@ export type LinkItem = {
   featured?: boolean;
   /** optional section heading rendered before this link */
   group?: string;
+  /** automatic switch at a set time (ISO with offset), e.g. pre-save -> out now */
+  release?: { at: string; title: string; tag?: string };
 };
 
 export const settings = {
   /** page <title> and heading */
   name: 'JASON Y',
   tagline: 'Internet Emotional Music*',
-  avatar: '/links/avatar.jpg',  /** 'ascii' = animated site background, 'plain' = flat black */
+  avatar: '/links/avatar.jpg',
+  /** 'ascii' = animated site background, 'plain' = flat black */
   background: 'ascii' as 'ascii' | 'plain',
   /** 'list' = stacked rows, 'grid' = 2-column cards */
   layout: 'list' as 'list' | 'grid',
@@ -47,7 +50,14 @@ export const socials: { label: string; icon: SocialIcon; url: string }[] = [
 ];
 
 export const links: LinkItem[] = [
-  { title: 'stream "CLUB ANXIETY"', url: 'https://too.fm/club-anxiety', thumb: 'club-anxiety.jpg', tag: 'OUT NOW', featured: true },
+  // Switches to "OUT NOW" by itself at release.at (Nov 20, 2026, 9:00 PM PT = 12:00 AM ET).
+  {
+    title: 'pre-save "I MISS YOU"', url: 'https://too.fm/i-miss-you', thumb: 'i-miss-you.jpg',
+    tag: 'PRE-SAVE', featured: true,
+    release: { at: '2026-11-20T21:00:00-08:00', title: 'stream "I MISS YOU"', tag: 'OUT NOW' },
+  },
+
+  { title: 'stream "CLUB ANXIETY"', url: 'https://too.fm/club-anxiety', thumb: 'club-anxiety.jpg', tag: 'OUT NOW' },
   { title: 'stream "DON\'T LIE" with daniel lin', url: 'https://too.fm/dont-lie', thumb: 'dont-lie.jpg', tag: 'OUT NOW' },
   { title: 'watch "RUN" music video', url: 'https://www.youtube.com/watch?v=gWsvF-StYYg', thumb: 'run-video.jpg', tag: 'VIDEO' },
   { title: 'stream "RUN"', url: 'https://too.fm/run-jy', thumb: 'run.jpg', tag: 'OUT NOW' },
