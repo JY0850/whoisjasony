@@ -50,12 +50,7 @@ export const socials: { label: string; icon: SocialIcon; url: string }[] = [
 ];
 
 export const links: LinkItem[] = [
-  // Switches to "OUT NOW" by itself at release.at (Nov 20, 2026, 9:00 PM PT = 12:00 AM ET).
-  {
-    title: 'pre-save "I MISS YOU"', url: 'https://too.fm/i-miss-you', thumb: 'i-miss-you.jpg',
-    tag: 'PRE-SAVE', featured: true,
-    release: { at: '2026-11-20T21:00:00-08:00', title: 'stream "I MISS YOU"', tag: 'OUT NOW' },
-  },
+  { title: 'stream "I MISS YOU"', url: 'https://too.fm/i-miss-you', thumb: 'i-miss-you.jpg', tag: 'OUT NOW', featured: true },
 
   { title: 'stream "CLUB ANXIETY"', url: 'https://too.fm/club-anxiety', thumb: 'club-anxiety.jpg', tag: 'OUT NOW' },
   { title: 'stream "DON\'T LIE" with daniel lin', url: 'https://too.fm/dont-lie', thumb: 'dont-lie.jpg', tag: 'OUT NOW' },
